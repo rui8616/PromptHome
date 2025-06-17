@@ -1,2 +1,0 @@
-Target dependency graph (1 target)
-Target 'PromptHome' in project 'PromptHome' (no dependencies)
