@@ -30,6 +30,9 @@ playground.xcworkspace
 # .swiftpm
 
 .build/
+.release/
+.PromptHomeTests/
+.PromptHomeUITests/
 
 # CocoaPods
 #
