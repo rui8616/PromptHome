@@ -1,0 +1,21 @@
+version: "Apple Swift version 6.1.2 (swiftlang-6.1.2.1.2 clang-1700.0.13.5)"
+options: "34657d78557c1184b8e7270539f69a7fa02060791917c2d8daaa4576040fbfcc"
+build_start_time: [1750161488, 234239000]
+build_end_time: [1750161502, 619332000]
+inputs:
+  "/Users/rui/Documents/git/PromptHome/PromptHome/PromptHome/ContentView.swift": [1750161231, 928197419]
+  "/Users/rui/Documents/git/PromptHome/PromptHome/PromptHome/Models/AIModelConfig.swift": [1750121540, 581171357]
+  "/Users/rui/Documents/git/PromptHome/PromptHome/PromptHome/Models/Prompt.swift": [1750150365, 655716624]
+  "/Users/rui/Documents/git/PromptHome/PromptHome/PromptHome/PromptHomeApp.swift": [1750121540, 594263720]
+  "/Users/rui/Documents/git/PromptHome/PromptHome/PromptHome/Services/AIPolishService.swift": [1750058199, 697324795]
+  "/Users/rui/Documents/git/PromptHome/PromptHome/PromptHome/Services/MCPClient.swift": [1750121540, 662668281]
+  "/Users/rui/Documents/git/PromptHome/PromptHome/PromptHome/Services/MCPProtocol.swift": [1750055654, 859653688]
+  "/Users/rui/Documents/git/PromptHome/PromptHome/PromptHome/Services/MCPServer.swift": [1750120962, 375907238]
+  "/Users/rui/Documents/git/PromptHome/PromptHome/PromptHome/Services/MCPService.swift": [1750055428, 296101443]
+  "/Users/rui/Documents/git/PromptHome/PromptHome/PromptHome/Views/AIModelConfigView.swift": [1750121540, 594228095]
+  "/Users/rui/Documents/git/PromptHome/PromptHome/PromptHome/Views/MCPConfigView.swift": [1750121540, 594546511]
+  "/Users/rui/Documents/git/PromptHome/PromptHome/PromptHome/Views/MarkdownView.swift": [1750074153, 181056717]
+  "/Users/rui/Documents/git/PromptHome/PromptHome/PromptHome/Views/OptimizedTextView.swift": [1750121540, 594291428]
+  "/Users/rui/Documents/git/PromptHome/PromptHome/PromptHome/Views/PromptEditorView.swift": [1750161298, 955585933]
+  ? "/Users/rui/Documents/git/PromptHome/PromptHome/build/DerivedData/Build/Intermediates.noindex/PromptHome.build/Release/PromptHome.build/DerivedSources/GeneratedAssetSymbols.swift"
+  : [1750161487, 997917605]

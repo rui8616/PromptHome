@@ -1,0 +1,126 @@
+/* ContentView.swift */
+"new_prompt" = "新建提示词";
+"search_prompts" = "搜索 Prompts";
+"ai_model" = "模型提供商";
+"mcp_service" = "MCP 服务";
+"welcome_title" = "Welcome to Prompt Home";
+"prompt_management" = "Prompt管理";
+"prompt_management_desc" = "从左侧选择一个Prompt查看、编辑、或创建一个新的Prompt。统一管理你的Prompt，同时可以使用AI功能润色你的提示词。";
+"prompt_calling" = "Prompt调用";
+"prompt_calling_desc" = "点击右上角MCP服务按钮，获取MCP配置信息，完成配置后，让你的AI客户端能随时自主调用你的Prompts。";
+"new_prompt_title" = "新提示词标题";
+"untitled" = "无标题";
+
+/* PromptEditorView.swift */
+"title" = "标题";
+"tags" = "标签";
+"content" = "内容";
+"preview" = "预览";
+"hide_preview" = "隐藏预览";
+"edit" = "编辑";
+"save" = "保存";
+"cancel" = "取消";
+"delete" = "删除";
+"polish_with_ai" = "AI 润色";
+"polishing" = "润色中...";
+"enter_title" = "输入标题";
+"enter_tags" = "输入标签（用空格分隔）";
+"tags_label" = "标签";
+"enter_new_tag" = "输入新标签";
+"add" = "添加";
+"word_count" = "字数统计";
+"prompt_title" = "提示词标题";
+"enter_content" = "输入内容";
+"confirm_delete" = "确定要删除这个提示词吗？";
+"delete_prompt" = "删除提示词";
+"updated_at" = "更新于";
+"no_content" = "暂无内容";
+"length_limit" = "字符长度限制";
+"length_limit_message" = "请确保输入内容在 10,000 文字以内";
+"delete_prompt_message" = "删除【%@】将永久删除该提示词，且无法恢复。";
+"polish_failed" = "AI 润色失败";
+"prompt_content_empty" = "提示词内容不能为空";
+"loading" = "加载中...";
+"no_more_data" = "没有更多数据了";
+"ai_polish_result" = "AI 润色结果";
+"ai_polish_message" = "提示词已成功润色";
+"polish_started" = "开始 AI 润色...";
+"polish_completed" = "润色完成！请查看结果。";
+
+/* AIModelConfigView.swift */
+"ai_model_config" = "AI 模型配置";
+"model_provider" = "模型提供商";
+"api_key" = "API 密钥";
+"base_url" = "基础 URL";
+"model" = "模型";
+"temperature" = "温度";
+"max_tokens" = "最大令牌数";
+"test_connection" = "测试连接";
+
+/* 导入导出功能 */
+"export_prompts" = "提示词导出";
+"import_prompts" = "提示词导入";
+"duplicate_prompts_found" = "发现重复提示词";
+"duplicate_prompts_message" = "以下提示词已存在，是否覆盖？";
+"overwrite" = "覆盖";
+"cancel" = "取消";
+"export_success" = "导出成功";
+"export_failed" = "导出失败";
+"import_success" = "导入成功";
+"import_failed" = "导入失败";
+"testing" = "测试中...";
+"connection_successful" = "连接成功";
+"connection_failed" = "连接失败";
+"enter_api_key" = "输入 API 密钥";
+"enter_base_url" = "输入基础 URL";
+"select_model" = "选择模型";
+"fetch_models" = "获取模型";
+"fetching" = "获取中...";
+
+/* MCPConfigView.swift */
+"mcp_config" = "MCP 配置";
+"server_status" = "服务器状态";
+"running" = "运行中";
+"stopped" = "已停止";
+"start_server" = "启动服务器";
+"stop_server" = "停止服务器";
+"server_url" = "服务器 URL";
+"copy_config" = "复制配置";
+"config_copied" = "配置已复制到剪贴板";
+"mcp_description" = "MCP（模型上下文协议）允许 AI 客户端访问您的提示词。启动服务器并在您的 AI 客户端中使用以下配置。";
+
+/* Language Switcher */
+"language" = "语言";
+"chinese" = "中文";
+"english" = "English";
+
+// Language switching
+"language_cn" = "中";
+"language_en" = "英";
+
+// AIModelConfigView
+"model_provider" = "模型提供商";
+"configure_ai_model_description" = "配置AI模型以启用AI润色功能";
+"model_provider_label" = "模型提供商";
+"enter_base_url" = "输入Base URL";
+"invalid_url_format" = "请输入有效的URL格式 (如: https://api.example.com)";
+"enter_api_key" = "输入API Key";
+"select_model" = "选择模型";
+"refresh" = "刷新";
+"no_models_found" = "未找到可用模型";
+"ensure_ollama_running" = "请确保Ollama服务正在运行，然后点击刷新";
+"test_connection" = "测试连接";
+"testing_connection" = "正在测试连接...";
+"connection_success" = "连接成功！模型可用";
+"connection_failed" = "连接失败，请检查配置";
+"test_failed_format" = "测试失败: %@";
+
+// MCPConfigView
+"mcp_configuration" = "MCP 配置";
+"mcp_service_status" = "MCP 服务状态";
+"running" = "运行中";
+"stopped" = "已停止";
+"service_address_format" = "服务地址: %@/api/mcp";
+"error_format" = "错误: %@";
+"configuration_example" = "配置示例";
+"copy_configuration" = "复制配置";

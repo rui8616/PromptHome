@@ -1,0 +1,32 @@
+{
+  "source": "/Users/rui/Documents/git/PromptHome/PromptHome/PromptHome/Views/AIModelConfigView.swift",
+  "tables": {
+    "Localizable": [
+      {
+        "comment": "",
+        "key": "",
+        "location": {
+          "startingColumn": 28,
+          "startingLine": 77
+        }
+      },
+      {
+        "comment": "",
+        "key": "Base URL",
+        "location": {
+          "startingColumn": 26,
+          "startingLine": 104
+        }
+      },
+      {
+        "comment": "",
+        "key": "API Key",
+        "location": {
+          "startingColumn": 30,
+          "startingLine": 141
+        }
+      }
+    ]
+  },
+  "version": 1
+}

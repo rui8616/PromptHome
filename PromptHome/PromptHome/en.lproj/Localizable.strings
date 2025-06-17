@@ -1,0 +1,126 @@
+/* ContentView.swift */
+"new_prompt" = "New Prompt";
+"search_prompts" = "Search Prompts";
+"ai_model" = "Model";
+"mcp_service" = "MCP Service";
+"welcome_title" = "Welcome to Prompt Home";
+"prompt_management" = "Prompt Management";
+"prompt_management_desc" = "Select a Prompt from the left to view, edit, or create a new Prompt. Manage all your Prompts in one place, and use AI features to polish your prompts.";
+"prompt_calling" = "Prompt Calling";
+"prompt_calling_desc" = "Click the MCP Service button in the top right corner to get MCP configuration information. After configuration, your AI client can autonomously call your Prompts at any time.";
+"new_prompt_title" = "New Prompt Title";
+"untitled" = "Untitled";
+
+/* PromptEditorView.swift */
+"title" = "Title";
+"tags" = "Tags";
+"content" = "Content";
+"preview" = "Preview";
+"hide_preview" = "Hide Preview";
+"edit" = "Edit";
+"save" = "Save";
+"cancel" = "Cancel";
+"delete" = "Delete";
+"polish_with_ai" = "Polish with AI";
+"polishing" = "Polishing...";
+"enter_title" = "Enter title";
+"enter_tags" = "Enter tags (separated by spaces)";
+"tags_label" = "Tags";
+"enter_new_tag" = "Enter new tag";
+"add" = "Add";
+"word_count" = "Word Count";
+"prompt_title" = "Prompt Title";
+"enter_content" = "Enter content";
+"confirm_delete" = "Are you sure you want to delete this prompt?";
+"delete_prompt" = "Delete Prompt";
+"updated_at" = "Updated At";
+"no_content" = "No Content";
+"length_limit" = "Length Limit";
+"length_limit_message" = "Please ensure input content is within 10,000 characters.";
+"delete_prompt_message" = "Deleting [%@] will permanently delete the prompt and cannot be recovered.";
+"polish_failed" = "Polish Failed";
+"prompt_content_empty" = "Prompt content cannot be empty";
+"loading" = "Loading...";
+"no_more_data" = "No more data";
+"ai_polish_result" = "AI Polish Result";
+"ai_polish_message" = "Prompt has been successfully polished";
+"polish_started" = "AI polishing started...";
+"polish_completed" = "Polishing completed! Please review the result.";
+
+/* AIModelConfigView.swift */
+"ai_model_config" = "AI Model Configuration";
+"model_provider" = "Model Provider";
+"api_key" = "API Key";
+"base_url" = "Base URL";
+"model" = "Model";
+"temperature" = "Temperature";
+"max_tokens" = "Max Tokens";
+"test_connection" = "Test Connection";
+
+/* Import/Export Features */
+"export_prompts" = "Export Prompts";
+"import_prompts" = "Import Prompts";
+"duplicate_prompts_found" = "Duplicate Prompts Found";
+"duplicate_prompts_message" = "The following prompts already exist. Do you want to overwrite them?";
+"overwrite" = "Overwrite";
+"cancel" = "Cancel";
+"export_success" = "Export Successful";
+"export_failed" = "Export Failed";
+"import_success" = "Import Successful";
+"import_failed" = "Import Failed";
+"testing" = "Testing...";
+"connection_successful" = "Connection Successful";
+"connection_failed" = "Connection Failed";
+"enter_api_key" = "Enter API Key";
+"enter_base_url" = "Enter Base URL";
+"select_model" = "Select Model";
+"fetch_models" = "Fetch Models";
+"fetching" = "Fetching...";
+
+/* MCPConfigView.swift */
+"mcp_config" = "MCP Configuration";
+"server_status" = "Server Status";
+"running" = "Running";
+"stopped" = "Stopped";
+"start_server" = "Start Server";
+"stop_server" = "Stop Server";
+"server_url" = "Server URL";
+"copy_config" = "Copy Configuration";
+"config_copied" = "Configuration copied to clipboard";
+"mcp_description" = "MCP (Model Context Protocol) allows AI clients to access your prompts. Start the server and use the configuration below in your AI client.";
+
+/* Language Switcher */
+"language" = "Language";
+"chinese" = "中文";
+"english" = "English";
+
+// Language switching
+"language_cn" = "CN";
+"language_en" = "EN";
+
+// AIModelConfigView
+"model_provider" = "Model Provider";
+"configure_ai_model_description" = "Configure AI model to enable AI polishing feature";
+"model_provider_label" = "Model Provider";
+"enter_base_url" = "Enter Base URL";
+"invalid_url_format" = "Please enter a valid URL format (e.g., https://api.example.com)";
+"enter_api_key" = "Enter API Key";
+"select_model" = "Select Model";
+"refresh" = "Refresh";
+"no_models_found" = "No available models found";
+"ensure_ollama_running" = "Please ensure Ollama service is running, then click refresh";
+"test_connection" = "Test Connection";
+"testing_connection" = "Testing connection...";
+"connection_success" = "Connection successful! Model available";
+"connection_failed" = "Connection failed, please check configuration";
+"test_failed_format" = "Test failed: %@";
+
+// MCPConfigView
+"mcp_configuration" = "MCP Configuration";
+"mcp_service_status" = "MCP Service Status";
+"running" = "Running";
+"stopped" = "Stopped";
+"service_address_format" = "Service Address: %@/api/mcp";
+"error_format" = "Error: %@";
+"configuration_example" = "Configuration Example";
+"copy_configuration" = "Copy Configuration";

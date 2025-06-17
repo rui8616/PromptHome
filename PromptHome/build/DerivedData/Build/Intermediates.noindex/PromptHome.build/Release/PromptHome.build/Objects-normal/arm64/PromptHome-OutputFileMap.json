@@ -1,0 +1,85 @@
+{
+  "" : {
+    "const-values" : "/Users/rui/Documents/git/PromptHome/PromptHome/build/DerivedData/Build/Intermediates.noindex/PromptHome.build/Release/PromptHome.build/Objects-normal/arm64/PromptHome-master.swiftconstvalues",
+    "dependencies" : "/Users/rui/Documents/git/PromptHome/PromptHome/build/DerivedData/Build/Intermediates.noindex/PromptHome.build/Release/PromptHome.build/Objects-normal/arm64/PromptHome-master.d",
+    "diagnostics" : "/Users/rui/Documents/git/PromptHome/PromptHome/build/DerivedData/Build/Intermediates.noindex/PromptHome.build/Release/PromptHome.build/Objects-normal/arm64/PromptHome-master.dia",
+    "emit-module-dependencies" : "/Users/rui/Documents/git/PromptHome/PromptHome/build/DerivedData/Build/Intermediates.noindex/PromptHome.build/Release/PromptHome.build/Objects-normal/arm64/PromptHome-master-emit-module.d",
+    "emit-module-diagnostics" : "/Users/rui/Documents/git/PromptHome/PromptHome/build/DerivedData/Build/Intermediates.noindex/PromptHome.build/Release/PromptHome.build/Objects-normal/arm64/PromptHome-master-emit-module.dia",
+    "swift-dependencies" : "/Users/rui/Documents/git/PromptHome/PromptHome/build/DerivedData/Build/Intermediates.noindex/PromptHome.build/Release/PromptHome.build/Objects-normal/arm64/PromptHome-master.swiftdeps"
+  },
+  "/Users/rui/Documents/git/PromptHome/PromptHome/PromptHome/ContentView.swift" : {
+    "index-unit-output-path" : "/PromptHome.build/Release/PromptHome.build/Objects-normal/arm64/ContentView.o",
+    "llvm-bc" : "/Users/rui/Documents/git/PromptHome/PromptHome/build/DerivedData/Build/Intermediates.noindex/PromptHome.build/Release/PromptHome.build/Objects-normal/arm64/ContentView.bc",
+    "object" : "/Users/rui/Documents/git/PromptHome/PromptHome/build/DerivedData/Build/Intermediates.noindex/PromptHome.build/Release/PromptHome.build/Objects-normal/arm64/ContentView.o"
+  },
+  "/Users/rui/Documents/git/PromptHome/PromptHome/PromptHome/Models/AIModelConfig.swift" : {
+    "index-unit-output-path" : "/PromptHome.build/Release/PromptHome.build/Objects-normal/arm64/AIModelConfig.o",
+    "llvm-bc" : "/Users/rui/Documents/git/PromptHome/PromptHome/build/DerivedData/Build/Intermediates.noindex/PromptHome.build/Release/PromptHome.build/Objects-normal/arm64/AIModelConfig.bc",
+    "object" : "/Users/rui/Documents/git/PromptHome/PromptHome/build/DerivedData/Build/Intermediates.noindex/PromptHome.build/Release/PromptHome.build/Objects-normal/arm64/AIModelConfig.o"
+  },
+  "/Users/rui/Documents/git/PromptHome/PromptHome/PromptHome/Models/Prompt.swift" : {
+    "index-unit-output-path" : "/PromptHome.build/Release/PromptHome.build/Objects-normal/arm64/Prompt.o",
+    "llvm-bc" : "/Users/rui/Documents/git/PromptHome/PromptHome/build/DerivedData/Build/Intermediates.noindex/PromptHome.build/Release/PromptHome.build/Objects-normal/arm64/Prompt.bc",
+    "object" : "/Users/rui/Documents/git/PromptHome/PromptHome/build/DerivedData/Build/Intermediates.noindex/PromptHome.build/Release/PromptHome.build/Objects-normal/arm64/Prompt.o"
+  },
+  "/Users/rui/Documents/git/PromptHome/PromptHome/PromptHome/PromptHomeApp.swift" : {
+    "index-unit-output-path" : "/PromptHome.build/Release/PromptHome.build/Objects-normal/arm64/PromptHomeApp.o",
+    "llvm-bc" : "/Users/rui/Documents/git/PromptHome/PromptHome/build/DerivedData/Build/Intermediates.noindex/PromptHome.build/Release/PromptHome.build/Objects-normal/arm64/PromptHomeApp.bc",
+    "object" : "/Users/rui/Documents/git/PromptHome/PromptHome/build/DerivedData/Build/Intermediates.noindex/PromptHome.build/Release/PromptHome.build/Objects-normal/arm64/PromptHomeApp.o"
+  },
+  "/Users/rui/Documents/git/PromptHome/PromptHome/PromptHome/Services/AIPolishService.swift" : {
+    "index-unit-output-path" : "/PromptHome.build/Release/PromptHome.build/Objects-normal/arm64/AIPolishService.o",
+    "llvm-bc" : "/Users/rui/Documents/git/PromptHome/PromptHome/build/DerivedData/Build/Intermediates.noindex/PromptHome.build/Release/PromptHome.build/Objects-normal/arm64/AIPolishService.bc",
+    "object" : "/Users/rui/Documents/git/PromptHome/PromptHome/build/DerivedData/Build/Intermediates.noindex/PromptHome.build/Release/PromptHome.build/Objects-normal/arm64/AIPolishService.o"
+  },
+  "/Users/rui/Documents/git/PromptHome/PromptHome/PromptHome/Services/MCPClient.swift" : {
+    "index-unit-output-path" : "/PromptHome.build/Release/PromptHome.build/Objects-normal/arm64/MCPClient.o",
+    "llvm-bc" : "/Users/rui/Documents/git/PromptHome/PromptHome/build/DerivedData/Build/Intermediates.noindex/PromptHome.build/Release/PromptHome.build/Objects-normal/arm64/MCPClient.bc",
+    "object" : "/Users/rui/Documents/git/PromptHome/PromptHome/build/DerivedData/Build/Intermediates.noindex/PromptHome.build/Release/PromptHome.build/Objects-normal/arm64/MCPClient.o"
+  },
+  "/Users/rui/Documents/git/PromptHome/PromptHome/PromptHome/Services/MCPProtocol.swift" : {
+    "index-unit-output-path" : "/PromptHome.build/Release/PromptHome.build/Objects-normal/arm64/MCPProtocol.o",
+    "llvm-bc" : "/Users/rui/Documents/git/PromptHome/PromptHome/build/DerivedData/Build/Intermediates.noindex/PromptHome.build/Release/PromptHome.build/Objects-normal/arm64/MCPProtocol.bc",
+    "object" : "/Users/rui/Documents/git/PromptHome/PromptHome/build/DerivedData/Build/Intermediates.noindex/PromptHome.build/Release/PromptHome.build/Objects-normal/arm64/MCPProtocol.o"
+  },
+  "/Users/rui/Documents/git/PromptHome/PromptHome/PromptHome/Services/MCPServer.swift" : {
+    "index-unit-output-path" : "/PromptHome.build/Release/PromptHome.build/Objects-normal/arm64/MCPServer.o",
+    "llvm-bc" : "/Users/rui/Documents/git/PromptHome/PromptHome/build/DerivedData/Build/Intermediates.noindex/PromptHome.build/Release/PromptHome.build/Objects-normal/arm64/MCPServer.bc",
+    "object" : "/Users/rui/Documents/git/PromptHome/PromptHome/build/DerivedData/Build/Intermediates.noindex/PromptHome.build/Release/PromptHome.build/Objects-normal/arm64/MCPServer.o"
+  },
+  "/Users/rui/Documents/git/PromptHome/PromptHome/PromptHome/Services/MCPService.swift" : {
+    "index-unit-output-path" : "/PromptHome.build/Release/PromptHome.build/Objects-normal/arm64/MCPService.o",
+    "llvm-bc" : "/Users/rui/Documents/git/PromptHome/PromptHome/build/DerivedData/Build/Intermediates.noindex/PromptHome.build/Release/PromptHome.build/Objects-normal/arm64/MCPService.bc",
+    "object" : "/Users/rui/Documents/git/PromptHome/PromptHome/build/DerivedData/Build/Intermediates.noindex/PromptHome.build/Release/PromptHome.build/Objects-normal/arm64/MCPService.o"
+  },
+  "/Users/rui/Documents/git/PromptHome/PromptHome/PromptHome/Views/AIModelConfigView.swift" : {
+    "index-unit-output-path" : "/PromptHome.build/Release/PromptHome.build/Objects-normal/arm64/AIModelConfigView.o",
+    "llvm-bc" : "/Users/rui/Documents/git/PromptHome/PromptHome/build/DerivedData/Build/Intermediates.noindex/PromptHome.build/Release/PromptHome.build/Objects-normal/arm64/AIModelConfigView.bc",
+    "object" : "/Users/rui/Documents/git/PromptHome/PromptHome/build/DerivedData/Build/Intermediates.noindex/PromptHome.build/Release/PromptHome.build/Objects-normal/arm64/AIModelConfigView.o"
+  },
+  "/Users/rui/Documents/git/PromptHome/PromptHome/PromptHome/Views/MCPConfigView.swift" : {
+    "index-unit-output-path" : "/PromptHome.build/Release/PromptHome.build/Objects-normal/arm64/MCPConfigView.o",
+    "llvm-bc" : "/Users/rui/Documents/git/PromptHome/PromptHome/build/DerivedData/Build/Intermediates.noindex/PromptHome.build/Release/PromptHome.build/Objects-normal/arm64/MCPConfigView.bc",
+    "object" : "/Users/rui/Documents/git/PromptHome/PromptHome/build/DerivedData/Build/Intermediates.noindex/PromptHome.build/Release/PromptHome.build/Objects-normal/arm64/MCPConfigView.o"
+  },
+  "/Users/rui/Documents/git/PromptHome/PromptHome/PromptHome/Views/MarkdownView.swift" : {
+    "index-unit-output-path" : "/PromptHome.build/Release/PromptHome.build/Objects-normal/arm64/MarkdownView.o",
+    "llvm-bc" : "/Users/rui/Documents/git/PromptHome/PromptHome/build/DerivedData/Build/Intermediates.noindex/PromptHome.build/Release/PromptHome.build/Objects-normal/arm64/MarkdownView.bc",
+    "object" : "/Users/rui/Documents/git/PromptHome/PromptHome/build/DerivedData/Build/Intermediates.noindex/PromptHome.build/Release/PromptHome.build/Objects-normal/arm64/MarkdownView.o"
+  },
+  "/Users/rui/Documents/git/PromptHome/PromptHome/PromptHome/Views/OptimizedTextView.swift" : {
+    "index-unit-output-path" : "/PromptHome.build/Release/PromptHome.build/Objects-normal/arm64/OptimizedTextView.o",
+    "llvm-bc" : "/Users/rui/Documents/git/PromptHome/PromptHome/build/DerivedData/Build/Intermediates.noindex/PromptHome.build/Release/PromptHome.build/Objects-normal/arm64/OptimizedTextView.bc",
+    "object" : "/Users/rui/Documents/git/PromptHome/PromptHome/build/DerivedData/Build/Intermediates.noindex/PromptHome.build/Release/PromptHome.build/Objects-normal/arm64/OptimizedTextView.o"
+  },
+  "/Users/rui/Documents/git/PromptHome/PromptHome/PromptHome/Views/PromptEditorView.swift" : {
+    "index-unit-output-path" : "/PromptHome.build/Release/PromptHome.build/Objects-normal/arm64/PromptEditorView.o",
+    "llvm-bc" : "/Users/rui/Documents/git/PromptHome/PromptHome/build/DerivedData/Build/Intermediates.noindex/PromptHome.build/Release/PromptHome.build/Objects-normal/arm64/PromptEditorView.bc",
+    "object" : "/Users/rui/Documents/git/PromptHome/PromptHome/build/DerivedData/Build/Intermediates.noindex/PromptHome.build/Release/PromptHome.build/Objects-normal/arm64/PromptEditorView.o"
+  },
+  "/Users/rui/Documents/git/PromptHome/PromptHome/build/DerivedData/Build/Intermediates.noindex/PromptHome.build/Release/PromptHome.build/DerivedSources/GeneratedAssetSymbols.swift" : {
+    "index-unit-output-path" : "/PromptHome.build/Release/PromptHome.build/Objects-normal/arm64/GeneratedAssetSymbols.o",
+    "llvm-bc" : "/Users/rui/Documents/git/PromptHome/PromptHome/build/DerivedData/Build/Intermediates.noindex/PromptHome.build/Release/PromptHome.build/Objects-normal/arm64/GeneratedAssetSymbols.bc",
+    "object" : "/Users/rui/Documents/git/PromptHome/PromptHome/build/DerivedData/Build/Intermediates.noindex/PromptHome.build/Release/PromptHome.build/Objects-normal/arm64/GeneratedAssetSymbols.o"
+  }
+}
