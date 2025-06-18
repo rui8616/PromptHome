@@ -70,3 +70,5 @@ fastlane/test_output
 .Trashes
 ehthumbs.db
 Thumbs.db
+PromptHome/.DS_Store
+PromptHome/PromptHome/.DS_Store
