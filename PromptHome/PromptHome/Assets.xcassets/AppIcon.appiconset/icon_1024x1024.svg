@@ -22,7 +22,7 @@
   <rect x="0" y="0" width="1024" height="1024" rx="180" ry="180" fill="url(#bgGradient)"/>
   
   <!-- 主图标组 -->
-  <g transform="translate(512, 512)" filter="url(#shadow)">
+  <g transform="translate(512, 512) scale(2)" filter="url(#shadow)">
     <!-- 聊天气泡主体 -->
     <path d="M -180 -120 Q -180 -160 -140 -160 L 140 -160 Q 180 -160 180 -120 L 180 -40 Q 180 0 140 0 L -60 0 L -140 60 Q -160 75 -160 50 L -160 0 Q -180 0 -180 -40 Z" 
           fill="url(#iconGradient)" stroke="none"/>

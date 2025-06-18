@@ -23,9 +23,7 @@
 		<key>UINewsstandIcon</key>
 		<dict>
 			<key>CFBundleIconFiles</key>
-			<array>
-				<string></string>
-			</array>
+			<string>AppIcon</string>
 			<key>UINewsstandBindingType</key>
 			<string>UINewsstandBindingTypeMagazine</string>
 			<key>UINewsstandBindingEdge</key>
