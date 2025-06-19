@@ -4,7 +4,7 @@
 
 ## 项目概述
 
-PromptHome 是一个基于 SwiftUI + SwiftData 开发的原生 macOS 应用，用于管理和组织 AI 提示词。支持 AI 润色、MCP 服务集成、分页显示等高级功能。
+PromptHome 是一个基于 SwiftUI + SwiftData 开发的原生 macOS 应用，用于管理和组织 AI 提示词，所有的提示词都保存在本地。支持 AI 润色、MCP 服务集成、分页显示等高级功能。
 
 ## 页面快照
 ![PromptHome 主界面](PromptHome/PromptHome/docs/main.png)

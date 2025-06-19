@@ -4,7 +4,7 @@
 
 ## Project Overview
 
-PromptHome is a native macOS application developed with SwiftUI + SwiftData for managing and organizing AI prompts. It supports advanced features such as AI polishing, MCP service integration, and pagination.
+PromptHome is a native macOS application developed with SwiftUI + SwiftData for managing and organizing AI prompts, with all prompts stored locally. It supports advanced features such as AI polishing, MCP service integration, and pagination.
 
 ## Screenshots
 ![PromptHome Main Interface](PromptHome/PromptHome/docs/main.png)
@@ -77,8 +77,9 @@ PromptHome/
 ### High Priority
 - [X] Enhanced Markdown rendering (bold, italic, code blocks, etc.)
 - [X] Import/export functionality
-- [ ] Prompt categorization and folder management
 - [ ] Keyboard shortcuts support
+- [ ] Add persistent status bar icon display
+- [ ] Add auto-launch with macOS option
 
 ### Medium Priority
 - [X] Theme switching (light/dark mode)
@@ -88,6 +89,7 @@ PromptHome/
 - [ ] Cloud synchronization
 - [ ] Collaboration features
 - [ ] Version history management
+- [ ] Prompt categorization and folder management
 
 ## Design Reference
 
