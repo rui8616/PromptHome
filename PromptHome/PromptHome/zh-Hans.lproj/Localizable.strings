@@ -124,3 +124,15 @@
 "error_format" = "错误: %@";
 "configuration_example" = "配置示例";
 "copy_configuration" = "复制配置";
+
+/* PreferencesView.swift */
+"preferences" = "偏好设置";
+"startup_settings" = "启动设置";
+"auto_launch_title" = "开机自动启动";
+"auto_launch_description" = "在系统启动时自动启动 PromptHome";
+"auto_launch_permission_title" = "开机自启动权限";
+"auto_launch_permission_message" = "PromptHome 需要权限在系统启动时自动运行。这将帮助您更快地访问您的提示词。";
+"auto_launch_error_title" = "自启动设置失败";
+"allow" = "允许";
+"done" = "完成";
+"ok" = "确定";

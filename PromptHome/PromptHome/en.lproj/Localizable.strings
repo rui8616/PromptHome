@@ -124,3 +124,15 @@
 "error_format" = "Error: %@";
 "configuration_example" = "Configuration Example";
 "copy_configuration" = "Copy Configuration";
+
+/* PreferencesView.swift */
+"preferences" = "Preferences";
+"startup_settings" = "Startup Settings";
+"auto_launch_title" = "Launch at Login";
+"auto_launch_description" = "Automatically start PromptHome when the system starts";
+"auto_launch_permission_title" = "Auto Launch Permission";
+"auto_launch_permission_message" = "PromptHome needs permission to automatically run when the system starts. This will help you access your prompts faster.";
+"auto_launch_error_title" = "Auto Launch Setting Failed";
+"allow" = "Allow";
+"done" = "Done";
+"ok" = "OK";

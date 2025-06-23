@@ -86,7 +86,7 @@ struct QuickAccessView: View {
                 StatusIndicator(
                     icon: "brain",
                     title: "AI服务",
-                    value: isAIServiceConnected ? "已连接" : "未连接",
+                    value: isAIServiceConnected ? "已启动" : "未启动",
                     color: isAIServiceConnected ? .green : .orange
                 )
             }

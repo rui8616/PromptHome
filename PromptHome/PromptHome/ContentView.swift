@@ -195,6 +195,8 @@ struct ContentView: View {
     @State private var importedPrompts: [Prompt] = []
     @State private var isExportButtonHovered = false
     @State private var isImportButtonHovered = false
+    @State private var showingPreferences = false
+    @State private var isPreferencesButtonHovered = false
     
     var filteredPrompts: [Prompt] {
         return paginationManager.prompts
@@ -396,7 +398,9 @@ struct ContentView: View {
                                                       showingExportDialog: $showingExportDialog, 
                                                       showingImportDialog: $showingImportDialog,
                                                       isExportButtonHovered: $isExportButtonHovered,
-                                                      isImportButtonHovered: $isImportButtonHovered)
+                                                      isImportButtonHovered: $isImportButtonHovered,
+                                                      showingPreferences: $showingPreferences,
+                                                      isPreferencesButtonHovered: $isPreferencesButtonHovered)
                                             .offset(x: 5, y: -140)
                                             .transition(
                                                 .asymmetric(
@@ -655,8 +659,8 @@ struct ContentView: View {
             // 由于SwiftUI的限制，这里暂时留空
         }
         .onReceive(NotificationCenter.default.publisher(for: .openPreferences)) { _ in
-            // 打开偏好设置，这里可以显示相关配置界面
-            showingAIModelConfig = true
+            // 打开偏好设置
+            showingPreferences = true
         }
         .onChange(of: searchText) { _, newValue in
             // 搜索文本变化时重新加载数据
@@ -675,6 +679,9 @@ struct ContentView: View {
         .sheet(isPresented: $showingMCPConfig) {
             MCPConfigView()
                 .environmentObject(mcpService)
+        }
+        .sheet(isPresented: $showingPreferences) {
+            PreferencesView()
         }
         .fileExporter(
             isPresented: $showingExportDialog,
@@ -988,7 +995,15 @@ struct FlowLayout: Layout {
 struct TagsView: View {
     let tags: [String]
     let isEditing: Bool
+    let isSelected: Bool
     let onTagsChanged: ([String]) -> Void
+    
+    init(tags: [String], isEditing: Bool, isSelected: Bool = false, onTagsChanged: @escaping ([String]) -> Void) {
+        self.tags = tags
+        self.isEditing = isEditing
+        self.isSelected = isSelected
+        self.onTagsChanged = onTagsChanged
+    }
     
     var body: some View {
         FlowLayout(alignment: .leading, horizontalSpacing: 6, verticalSpacing: 4) {
@@ -997,8 +1012,8 @@ struct TagsView: View {
                     .font(.caption)
                     .padding(.horizontal, 8)
                     .padding(.vertical, 4)
-                    .background(Color.green.opacity(0.1))
-                    .foregroundColor(.green)
+                    .background(Color.blue.opacity(0.1))
+                    .foregroundColor(isSelected ? .white : .blue)
                     .cornerRadius(12)
                     .lineLimit(1)
                     .fixedSize(horizontal: true, vertical: false)
@@ -1025,13 +1040,14 @@ struct PromptListItem: View {
                     .font(.headline)
                     .lineLimit(1)
                     .truncationMode(.tail)
-                    .foregroundColor(isSelected ? .accentColor : .primary)
+                    .foregroundColor(isSelected ? .white : .primary)
                     .animation(.easeInOut(duration: 0.2), value: isSelected)
                 
                 if !prompt.tags.isEmpty {
                     TagsView(
                         tags: prompt.tags,
                         isEditing: false,
+                        isSelected: isSelected,
                         onTagsChanged: { _ in }
                     )
                     .transition(.scale.combined(with: .opacity))
@@ -1039,7 +1055,7 @@ struct PromptListItem: View {
                 
                 Text(prompt.content)
                     .font(.caption)
-                    .foregroundColor(isHovered ? .secondary.opacity(0.8) : .secondary)
+                    .foregroundColor(isSelected ? .white : (isHovered ? .secondary.opacity(0.8) : .secondary))
                     .lineLimit(2)
                     .truncationMode(.tail)
             }
@@ -1148,6 +1164,8 @@ struct ToolsMenuView: View {
     @Binding var showingImportDialog: Bool
     @Binding var isExportButtonHovered: Bool
     @Binding var isImportButtonHovered: Bool
+    @Binding var showingPreferences: Bool
+    @Binding var isPreferencesButtonHovered: Bool
 
     var body: some View {
         VStack(alignment: .leading, spacing: 2) {
@@ -1196,11 +1214,11 @@ struct ToolsMenuView: View {
             }
 
             // 分隔线
-            Rectangle()
-                .fill(Color.gray.opacity(0.2))
-                .frame(height: 1)
-                .padding(.horizontal, 8)
-                .padding(.vertical, 4)
+            // Rectangle()
+            //     .fill(Color.gray.opacity(0.2))
+            //     .frame(height: 1)
+            //     .padding(.horizontal, 8)
+            //     .padding(.vertical, 4)
 
             // 导入按钮
             Button(action: {
@@ -1245,9 +1263,60 @@ struct ToolsMenuView: View {
                     isImportButtonHovered = hovering
                 }
             }
+            
+            // 分隔线
+            // Rectangle()
+            //     .fill(Color.gray.opacity(0.2))
+            //     .frame(height: 1)
+            //     .padding(.horizontal, 8)
+            //     .padding(.vertical, 4)
+            
+            // 偏好设置按钮
+            Button(action: {
+                withAnimation(.spring(response: 0.3, dampingFraction: 0.8)) {
+                    showingPreferences = true
+                    showingToolsMenu = false
+                }
+            }) {
+                HStack(spacing: 12) {
+                    Image(systemName: "gearshape.fill")
+                        .font(.system(size: 14, weight: .medium))
+                        .foregroundColor(isPreferencesButtonHovered ? .white : .accentColor)
+                        .scaleEffect(isPreferencesButtonHovered ? 1.1 : 1.0)
+                        .animation(.spring(response: 0.3, dampingFraction: 0.7), value: isPreferencesButtonHovered)
+                    
+                    Text(NSLocalizedString("preferences"))
+                        .font(.system(size: 13, weight: .medium))
+                        .foregroundColor(isPreferencesButtonHovered ? .white : .primary)
+                    
+                    Spacer()
+                }
+                .padding(.horizontal, 12)
+                .padding(.vertical, 10)
+                .frame(maxWidth: .infinity, alignment: .leading)
+                .background(
+                    RoundedRectangle(cornerRadius: 8)
+                        .fill(isPreferencesButtonHovered ? 
+                              LinearGradient(colors: [.accentColor, .accentColor.opacity(0.8)], startPoint: .leading, endPoint: .trailing) :
+                              LinearGradient(colors: [Color.clear], startPoint: .leading, endPoint: .trailing)
+                        )
+                        .animation(.easeInOut(duration: 0.2), value: isPreferencesButtonHovered)
+                )
+                .overlay(
+                    RoundedRectangle(cornerRadius: 8)
+                        .stroke(isPreferencesButtonHovered ? Color.clear : Color.gray.opacity(0.2), lineWidth: 1)
+                        .animation(.easeInOut(duration: 0.2), value: isPreferencesButtonHovered)
+                )
+            }
+            .buttonStyle(PlainButtonStyle())
+            .onHover { hovering in
+                withAnimation(.easeInOut(duration: 0.2)) {
+                    isPreferencesButtonHovered = hovering
+                }
+            }
         }
         .padding(8)
-        .frame(width: 180)
+        .frame(width: 200)
         .background(
             RoundedRectangle(cornerRadius: 12)
                 .fill(.regularMaterial)

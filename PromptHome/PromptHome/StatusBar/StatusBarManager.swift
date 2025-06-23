@@ -132,7 +132,7 @@ class StatusBarManager {
         guard let button = statusBarItem?.button else { return }
         
         // 设置工具提示
-        let statusText = isAIServiceConnected ? "已连接" : "未连接"
+        let statusText = isAIServiceConnected ? "已启动" : "未启动"
         button.toolTip = "PromptHome - \(promptCount) 个提示词 | AI服务: \(statusText)"
     }
     
