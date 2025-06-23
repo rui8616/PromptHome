@@ -209,6 +209,7 @@ struct ContentView: View {
                     HStack {
                         Image(systemName: "plus.circle.fill")
                             .font(.system(size: 16, weight: .medium))
+                            .rotationEffect(.degrees(isNewButtonHovered ? 90 : 0))
                         Text(NSLocalizedString("new_prompt"))
                             .font(.system(size: 14, weight: .medium))
                         Spacer()
@@ -231,8 +232,13 @@ struct ContentView: View {
                     .scaleEffect(isNewButtonHovered ? 1.02 : 1.0)
                 }
                 .buttonStyle(PlainButtonStyle())
+                .pressAction {
+                    // 按下时的反馈
+                } onRelease: {
+                    // 释放时的反馈
+                }
                 .onHover { hovering in
-                    withAnimation(.easeInOut(duration: 0.2)) {
+                    withAnimation(.spring(response: 0.4, dampingFraction: 0.7)) {
                         isNewButtonHovered = hovering
                     }
                 }
@@ -242,9 +248,16 @@ struct ContentView: View {
                 // 搜索框
                 HStack {
                     Image(systemName: "magnifyingglass")
-                        .foregroundColor(isSearchFieldHovered ? .primary : .secondary)
+                        .foregroundColor(isSearchFieldHovered ? .accentColor : .secondary)
+                        .scaleEffect(isSearchFieldHovered ? 1.1 : 1.0)
+                        .animation(.spring(response: 0.3, dampingFraction: 0.6), value: isSearchFieldHovered)
                     TextField(NSLocalizedString("search_prompts"), text: $searchText)
                         .textFieldStyle(PlainTextFieldStyle())
+                        .onChange(of: searchText) { _, newValue in
+                            withAnimation(.easeInOut(duration: 0.3)) {
+                                paginationManager.loadInitialData(searchText: newValue)
+                            }
+                        }
                 }
                 .padding(8)
                 .background(
@@ -258,12 +271,13 @@ struct ContentView: View {
                 )
                 .overlay(
                     RoundedRectangle(cornerRadius: 6)
-                        .stroke(isSearchFieldHovered ? Color.accentColor.opacity(0.8) : Color.clear, lineWidth: 4)
+                        .stroke(isSearchFieldHovered ? Color.accentColor.opacity(0.8) : Color.clear, lineWidth: 2)
+                        .animation(.spring(response: 0.3, dampingFraction: 0.8), value: isSearchFieldHovered)
                 )
                 .cornerRadius(6)
                 .scaleEffect(isSearchFieldHovered ? 1.01 : 1.0)
                 .onHover { hovering in
-                    withAnimation(.easeInOut(duration: 0.2)) {
+                    withAnimation(.spring(response: 0.4, dampingFraction: 0.8)) {
                         isSearchFieldHovered = hovering
                     }
                 }
@@ -280,6 +294,10 @@ struct ContentView: View {
                                 .id(prompt.id)
                                 .listRowSeparator(.hidden)
                                 .listRowInsets(EdgeInsets())
+                                .transition(.asymmetric(
+                                    insertion: .move(edge: .leading).combined(with: .opacity),
+                                    removal: .move(edge: .trailing).combined(with: .opacity)
+                                ))
                                 .onAppear {
                                     // 当显示到倒数第3个项目时，加载更多数据
                                     if prompt == filteredPrompts.suffix(3).first {
@@ -351,17 +369,23 @@ struct ContentView: View {
                     HStack {
                         // 齿轮按钮
                         Button(action: {
-                            showingToolsMenu.toggle()
+                            withAnimation(.spring(response: 0.4, dampingFraction: 0.8)) {
+                                showingToolsMenu.toggle()
+                            }
                         }) {
                             Image(systemName: "gearshape.fill")
                                 .font(.system(size: 16, weight: .medium))
-                                .foregroundColor(isToolsButtonHovered ? .accentColor : .secondary)
-                                .scaleEffect(isToolsButtonHovered ? 1.1 : 1.0)
-                                .animation(.easeInOut(duration: 0.2), value: isToolsButtonHovered)
+                                .foregroundColor(isToolsButtonHovered || showingToolsMenu ? .accentColor : .secondary)
+                                .scaleEffect(isToolsButtonHovered ? 1.2 : (showingToolsMenu ? 1.1 : 1.0))
+                                .rotationEffect(.degrees(showingToolsMenu ? 180 : 0))
+                                .animation(.spring(response: 0.3, dampingFraction: 0.7), value: isToolsButtonHovered)
+                                .animation(.spring(response: 0.4, dampingFraction: 0.8), value: showingToolsMenu)
                         }
                         .buttonStyle(PlainButtonStyle())
                         .onHover { hovering in
-                            isToolsButtonHovered = hovering
+                            withAnimation(.easeInOut(duration: 0.2)) {
+                                isToolsButtonHovered = hovering
+                            }
                         }
                         .overlay(
                             Group {
@@ -373,14 +397,18 @@ struct ContentView: View {
                                                       showingImportDialog: $showingImportDialog,
                                                       isExportButtonHovered: $isExportButtonHovered,
                                                       isImportButtonHovered: $isImportButtonHovered)
-                                            .padding(8)
-                                            .background(
-                                                RoundedRectangle(cornerRadius: 10)
-                                                    .fill(Color(.windowBackgroundColor))
-                                                    .shadow(color: Color.black.opacity(0.2), radius: 5, x: 0, y: 2)
+                                            .offset(x: 5, y: -140)
+                                            .transition(
+                                                .asymmetric(
+                                                    insertion: .scale(scale: 0.8, anchor: .bottomLeading)
+                                                        .combined(with: .opacity)
+                                                        .combined(with: .move(edge: .bottom)),
+                                                    removal: .scale(scale: 0.9, anchor: .bottomLeading)
+                                                        .combined(with: .opacity)
+                                                        .combined(with: .move(edge: .bottom))
+                                                )
                                             )
-                                            .offset(x: 5, y: -120)
-                                            .transition(.move(edge: .bottom).combined(with: .opacity))
+                                            .animation(.spring(response: 0.4, dampingFraction: 0.8, blendDuration: 0.1), value: showingToolsMenu)
                                     }
                                 }
                             }, alignment: .topLeading
@@ -475,7 +503,9 @@ struct ContentView: View {
             ToolbarItemGroup(placement: .primaryAction) {
                 // 语言切换按钮
                 Button(action: {
-                    languageManager.toggleLanguage()
+                    withAnimation(.spring(response: 0.4, dampingFraction: 0.8)) {
+                        languageManager.toggleLanguage()
+                    }
                 }) {
                     Text(languageManager.currentLanguage == "zh-Hans" ? "CN" : "EN")
                         .padding(.horizontal, 12)
@@ -487,16 +517,26 @@ struct ContentView: View {
                         )
                         .foregroundColor(isLanguageButtonHovered ? Color.orange : Color.primary)
                         .scaleEffect(isLanguageButtonHovered ? 1.05 : 1.0)
-                        .animation(.easeInOut(duration: 0.2), value: isLanguageButtonHovered)
+                        .rotationEffect(.degrees(isLanguageButtonHovered ? 5 : 0))
+                        .animation(.spring(response: 0.4, dampingFraction: 0.7), value: isLanguageButtonHovered)
                 }
                 .buttonStyle(PlainButtonStyle())
+                .pressAction {
+                    // 按下反馈
+                } onRelease: {
+                    // 释放反馈
+                }
                 .onHover { hovering in
-                    isLanguageButtonHovered = hovering
+                    withAnimation(.spring(response: 0.3, dampingFraction: 0.8)) {
+                        isLanguageButtonHovered = hovering
+                    }
                 }
                 
                 // 主题切换按钮
                 Button(action: {
-                    themeManager.toggleTheme()
+                    withAnimation(.spring(response: 0.5, dampingFraction: 0.6)) {
+                        themeManager.toggleTheme()
+                    }
                 }) {
                     Image(systemName: themeManager.isDarkMode ? "moon.fill" : "sun.max.fill")
                         .font(.system(size: 14, weight: .medium))
@@ -509,11 +549,20 @@ struct ContentView: View {
                         )
                         .foregroundColor(isThemeButtonHovered ? Color.blue : Color.primary)
                         .scaleEffect(isThemeButtonHovered ? 1.05 : 1.0)
-                        .animation(.easeInOut(duration: 0.2), value: isThemeButtonHovered)
+                        .rotationEffect(.degrees(isThemeButtonHovered ? 15 : 0))
+                        .animation(.spring(response: 0.4, dampingFraction: 0.7), value: isThemeButtonHovered)
+                        .animation(.spring(response: 0.6, dampingFraction: 0.8), value: themeManager.isDarkMode)
                 }
                 .buttonStyle(PlainButtonStyle())
+                .pressAction {
+                    // 按下反馈
+                } onRelease: {
+                    // 释放反馈
+                }
                 .onHover { hovering in
-                    isThemeButtonHovered = hovering
+                    withAnimation(.spring(response: 0.3, dampingFraction: 0.8)) {
+                        isThemeButtonHovered = hovering
+                    }
                 }
                 
                 // AI 模型选择按钮
@@ -523,6 +572,7 @@ struct ContentView: View {
                     HStack(spacing: 6) {
                         Image(systemName: "cpu")
                             .font(.system(size: 12, weight: .medium))
+                            .scaleEffect(isAIModelButtonHovered ? 1.1 : 1.0)
                         Text(NSLocalizedString("ai_model"))
                     }
                     .padding(.horizontal, 12)
@@ -534,11 +584,18 @@ struct ContentView: View {
                     )
                     .foregroundColor(isAIModelButtonHovered ? Color.accentColor : Color.primary)
                     .scaleEffect(isAIModelButtonHovered ? 1.05 : 1.0)
-                    .animation(.easeInOut(duration: 0.2), value: isAIModelButtonHovered)
+                    .animation(.spring(response: 0.4, dampingFraction: 0.7), value: isAIModelButtonHovered)
                 }
                 .buttonStyle(PlainButtonStyle())
+                .pressAction {
+                    // 按下反馈
+                } onRelease: {
+                    // 释放反馈
+                }
                 .onHover { hovering in
-                    isAIModelButtonHovered = hovering
+                    withAnimation(.spring(response: 0.3, dampingFraction: 0.8)) {
+                        isAIModelButtonHovered = hovering
+                    }
                 }
                 
                 // MCP 服务示例按钮
@@ -548,6 +605,7 @@ struct ContentView: View {
                     HStack(spacing: 6) {
                         Image(systemName: "network")
                             .font(.system(size: 12, weight: .medium))
+                            .scaleEffect(isMCPServiceButtonHovered ? 1.1 : 1.0)
                         Text(NSLocalizedString("mcp_service"))
                     }
                     .padding(.horizontal, 12)
@@ -559,11 +617,18 @@ struct ContentView: View {
                     )
                     .foregroundColor(isMCPServiceButtonHovered ? Color.accentColor : Color.primary)
                     .scaleEffect(isMCPServiceButtonHovered ? 1.05 : 1.0)
-                    .animation(.easeInOut(duration: 0.2), value: isMCPServiceButtonHovered)
+                    .animation(.spring(response: 0.4, dampingFraction: 0.7), value: isMCPServiceButtonHovered)
                 }
                 .buttonStyle(PlainButtonStyle())
+                .pressAction {
+                    // 按下反馈
+                } onRelease: {
+                    // 释放反馈
+                }
                 .onHover { hovering in
-                    isMCPServiceButtonHovered = hovering
+                    withAnimation(.spring(response: 0.3, dampingFraction: 0.8)) {
+                        isMCPServiceButtonHovered = hovering
+                    }
                 }
             }
         }
@@ -577,10 +642,32 @@ struct ContentView: View {
                 selectedPrompt = paginationManager.prompts.first
             }
         }
+        .onReceive(NotificationCenter.default.publisher(for: .createNewPrompt)) { _ in
+            createNewPrompt()
+        }
+        .onReceive(NotificationCenter.default.publisher(for: .openPrompt)) { notification in
+            if let promptId = notification.object as? UUID {
+                openPrompt(with: promptId)
+            }
+        }
+        .onReceive(NotificationCenter.default.publisher(for: .focusSearch)) { _ in
+            // 聚焦搜索框的逻辑可以在这里实现
+            // 由于SwiftUI的限制，这里暂时留空
+        }
+        .onReceive(NotificationCenter.default.publisher(for: .openPreferences)) { _ in
+            // 打开偏好设置，这里可以显示相关配置界面
+            showingAIModelConfig = true
+        }
         .onChange(of: searchText) { _, newValue in
             // 搜索文本变化时重新加载数据
             paginationManager.loadInitialData(searchText: newValue)
             selectedPrompt = nil
+        }
+        .onChange(of: selectedPrompt) { _, newPrompt in
+            // 当选择提示词时，添加到最近使用列表
+            if let prompt = newPrompt {
+                RecentPromptsManager.shared.addRecentPrompt(prompt)
+            }
         }
         .sheet(isPresented: $showingAIModelConfig) {
             AIModelConfigView()
@@ -639,12 +726,40 @@ struct ContentView: View {
         
         selectedPrompt = newPrompt
         
+        // 添加到最近使用列表
+        RecentPromptsManager.shared.addRecentPrompt(newPrompt)
+        
         // 确保编辑状态正确初始化
         DispatchQueue.main.async {
             self.isEditing = true
             self.editingTitle = newPrompt.title
             self.editingTags = newPrompt.tags
             self.editingContent = newPrompt.content
+        }
+    }
+    
+    private func openPrompt(with id: UUID) {
+        // 在当前加载的提示词中查找
+        if let prompt = paginationManager.prompts.first(where: { $0.id == id }) {
+            selectedPrompt = prompt
+            RecentPromptsManager.shared.addRecentPrompt(prompt)
+            return
+        }
+        
+        // 如果在当前列表中没找到，从数据库中查找
+        do {
+            let descriptor = FetchDescriptor<Prompt>(
+                predicate: #Predicate<Prompt> { prompt in
+                    prompt.id == id
+                }
+            )
+            let prompts = try modelContext.fetch(descriptor)
+            if let prompt = prompts.first {
+                selectedPrompt = prompt
+                RecentPromptsManager.shared.addRecentPrompt(prompt)
+            }
+        } catch {
+            print("Failed to fetch prompt with id \(id): \(error)")
         }
     }
     
@@ -897,6 +1012,7 @@ struct PromptListItem: View {
     let prompt: Prompt
     @Binding var selectedPrompt: Prompt?
     @State private var isHovered = false
+    @State private var isPressed = false
     
     private var isSelected: Bool {
         selectedPrompt?.id == prompt.id
@@ -909,7 +1025,8 @@ struct PromptListItem: View {
                     .font(.headline)
                     .lineLimit(1)
                     .truncationMode(.tail)
-                    .foregroundColor(isHovered ? .primary : .primary)
+                    .foregroundColor(isSelected ? .accentColor : .primary)
+                    .animation(.easeInOut(duration: 0.2), value: isSelected)
                 
                 if !prompt.tags.isEmpty {
                     TagsView(
@@ -917,6 +1034,7 @@ struct PromptListItem: View {
                         isEditing: false,
                         onTagsChanged: { _ in }
                     )
+                    .transition(.scale.combined(with: .opacity))
                 }
                 
                 Text(prompt.content)
@@ -929,29 +1047,92 @@ struct PromptListItem: View {
         }
         .padding(.vertical, 8)
         .padding(.horizontal, 12)
-            .background(
-                Group {
-                    if isHovered {
-                        LinearGradient(gradient: Gradient(colors: [Color(NSColor.controlBackgroundColor).opacity(0.5), Color(NSColor.controlBackgroundColor).opacity(0.2)]), startPoint: .leading, endPoint: .trailing)
-                    } else {
-                        LinearGradient(gradient: Gradient(colors: [Color(NSColor.controlBackgroundColor).opacity(0.2), Color(NSColor.controlBackgroundColor).opacity(0.1)]), startPoint: .leading, endPoint: .trailing)
-                    }
+        .background(
+            Group {
+                if isSelected {
+                    LinearGradient(
+                        gradient: Gradient(colors: [
+                            Color.accentColor.opacity(0.15),
+                            Color.accentColor.opacity(0.08)
+                        ]),
+                        startPoint: .leading,
+                        endPoint: .trailing
+                    )
+                } else if isHovered {
+                    LinearGradient(
+                        gradient: Gradient(colors: [
+                            Color(NSColor.controlBackgroundColor).opacity(0.5),
+                            Color(NSColor.controlBackgroundColor).opacity(0.2)
+                        ]),
+                        startPoint: .leading,
+                        endPoint: .trailing
+                    )
+                } else {
+                    LinearGradient(
+                        gradient: Gradient(colors: [
+                            Color(NSColor.controlBackgroundColor).opacity(0.2),
+                            Color(NSColor.controlBackgroundColor).opacity(0.1)
+                        ]),
+                        startPoint: .leading,
+                        endPoint: .trailing
+                    )
                 }
-            )
+            }
+        )
         .overlay(
             RoundedRectangle(cornerRadius: 6)
-                .stroke(isHovered ? Color.accentColor.opacity(0.8) : Color.clear, lineWidth: 4)
+                .stroke(
+                    isSelected ? Color.accentColor.opacity(0.6) :
+                    isHovered ? Color.accentColor.opacity(0.4) : Color.clear,
+                    lineWidth: isSelected ? 2 : 1
+                )
+                .animation(.spring(response: 0.3, dampingFraction: 0.8), value: isSelected)
         )
         .cornerRadius(6)
-        .scaleEffect(isHovered ? 1.01 : 1.0)
-        .shadow(color: isHovered ? Color.black.opacity(0.1) : Color.clear, radius: 2, x: 0, y: 1)
+        .scaleEffect(
+            isPressed ? 0.98 :
+            isHovered ? 1.02 :
+            isSelected ? 1.01 : 1.0
+        )
+        .shadow(
+            color: isSelected ? Color.accentColor.opacity(0.2) :
+                   isHovered ? Color.black.opacity(0.1) : Color.clear,
+            radius: isSelected ? 4 : 2,
+            x: 0,
+            y: isSelected ? 2 : 1
+        )
         .onHover { hovering in
-            withAnimation(.easeInOut(duration: 0.2)) {
+            withAnimation(.spring(response: 0.4, dampingFraction: 0.8)) {
                 isHovered = hovering
             }
         }
         .padding(.horizontal, 8)
         .padding(.vertical, 2)
+    }
+}
+
+// MARK: - 按压动画修饰符
+struct PressAction: ViewModifier {
+    let onPress: () -> Void
+    let onRelease: () -> Void
+    
+    @State private var isPressed = false
+    
+    func body(content: Content) -> some View {
+        content
+            .onLongPressGesture(minimumDuration: 0, maximumDistance: .infinity, pressing: { pressing in
+                if pressing {
+                    onPress()
+                } else {
+                    onRelease()
+                }
+            }, perform: {})
+    }
+}
+
+extension View {
+    func pressAction(onPress: @escaping () -> Void, onRelease: @escaping () -> Void) -> some View {
+        modifier(PressAction(onPress: onPress, onRelease: onRelease))
     }
 }
 
@@ -969,45 +1150,108 @@ struct ToolsMenuView: View {
     @Binding var isImportButtonHovered: Bool
 
     var body: some View {
-        VStack(alignment: .leading, spacing: 0) {
+        VStack(alignment: .leading, spacing: 2) {
+            // 导出按钮
             Button(action: {
-                showingExportDialog = true
-                showingToolsMenu = false // Close menu after action
+                withAnimation(.spring(response: 0.3, dampingFraction: 0.8)) {
+                    showingExportDialog = true
+                    showingToolsMenu = false
+                }
             }) {
-                HStack {
-                    Image(systemName: "arrow.up.doc")
+                HStack(spacing: 12) {
+                    Image(systemName: "square.and.arrow.up")
+                        .font(.system(size: 14, weight: .medium))
+                        .foregroundColor(isExportButtonHovered ? .white : .accentColor)
+                        .scaleEffect(isExportButtonHovered ? 1.1 : 1.0)
+                        .animation(.spring(response: 0.3, dampingFraction: 0.7), value: isExportButtonHovered)
+                    
                     Text(NSLocalizedString("export_prompts"))
+                        .font(.system(size: 13, weight: .medium))
+                        .foregroundColor(isExportButtonHovered ? .white : .primary)
+                    
+                    Spacer()
                 }
-                .padding(10)
+                .padding(.horizontal, 12)
+                .padding(.vertical, 10)
                 .frame(maxWidth: .infinity, alignment: .leading)
-                .background(isExportButtonHovered ? Color.gray.opacity(0.2) : Color.clear)
-                .cornerRadius(5)
+                .background(
+                    RoundedRectangle(cornerRadius: 8)
+                        .fill(isExportButtonHovered ? 
+                              LinearGradient(colors: [.accentColor, .accentColor.opacity(0.8)], startPoint: .leading, endPoint: .trailing) :
+                              LinearGradient(colors: [Color.clear], startPoint: .leading, endPoint: .trailing)
+                        )
+                        .animation(.easeInOut(duration: 0.2), value: isExportButtonHovered)
+                )
+                .overlay(
+                    RoundedRectangle(cornerRadius: 8)
+                        .stroke(isExportButtonHovered ? Color.clear : Color.gray.opacity(0.2), lineWidth: 1)
+                        .animation(.easeInOut(duration: 0.2), value: isExportButtonHovered)
+                )
             }
             .buttonStyle(PlainButtonStyle())
             .onHover { hovering in
-                isExportButtonHovered = hovering
+                withAnimation(.easeInOut(duration: 0.2)) {
+                    isExportButtonHovered = hovering
+                }
             }
 
-            Divider()
+            // 分隔线
+            Rectangle()
+                .fill(Color.gray.opacity(0.2))
+                .frame(height: 1)
+                .padding(.horizontal, 8)
+                .padding(.vertical, 4)
 
+            // 导入按钮
             Button(action: {
-                showingImportDialog = true
-                showingToolsMenu = false // Close menu after action
-            }) {
-                HStack {
-                    Image(systemName: "arrow.down.doc")
-                    Text(NSLocalizedString("import_prompts"))
+                withAnimation(.spring(response: 0.3, dampingFraction: 0.8)) {
+                    showingImportDialog = true
+                    showingToolsMenu = false
                 }
-                .padding(10)
+            }) {
+                HStack(spacing: 12) {
+                    Image(systemName: "square.and.arrow.down")
+                        .font(.system(size: 14, weight: .medium))
+                        .foregroundColor(isImportButtonHovered ? .white : .accentColor)
+                        .scaleEffect(isImportButtonHovered ? 1.1 : 1.0)
+                        .animation(.spring(response: 0.3, dampingFraction: 0.7), value: isImportButtonHovered)
+                    
+                    Text(NSLocalizedString("import_prompts"))
+                        .font(.system(size: 13, weight: .medium))
+                        .foregroundColor(isImportButtonHovered ? .white : .primary)
+                    
+                    Spacer()
+                }
+                .padding(.horizontal, 12)
+                .padding(.vertical, 10)
                 .frame(maxWidth: .infinity, alignment: .leading)
-                .background(isImportButtonHovered ? Color.gray.opacity(0.2) : Color.clear)
-                .cornerRadius(5)
+                .background(
+                    RoundedRectangle(cornerRadius: 8)
+                        .fill(isImportButtonHovered ? 
+                              LinearGradient(colors: [.accentColor, .accentColor.opacity(0.8)], startPoint: .leading, endPoint: .trailing) :
+                              LinearGradient(colors: [Color.clear], startPoint: .leading, endPoint: .trailing)
+                        )
+                        .animation(.easeInOut(duration: 0.2), value: isImportButtonHovered)
+                )
+                .overlay(
+                    RoundedRectangle(cornerRadius: 8)
+                        .stroke(isImportButtonHovered ? Color.clear : Color.gray.opacity(0.2), lineWidth: 1)
+                        .animation(.easeInOut(duration: 0.2), value: isImportButtonHovered)
+                )
             }
             .buttonStyle(PlainButtonStyle())
             .onHover { hovering in
-                isImportButtonHovered = hovering
+                withAnimation(.easeInOut(duration: 0.2)) {
+                    isImportButtonHovered = hovering
+                }
             }
         }
-        .frame(width: 150, height: 90) // Test with slightly larger height
+        .padding(8)
+        .frame(width: 180)
+        .background(
+            RoundedRectangle(cornerRadius: 12)
+                .fill(.regularMaterial)
+                .shadow(color: Color.black.opacity(0.1), radius: 8, x: 0, y: 4)
+        )
     }
 }

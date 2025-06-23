@@ -49,10 +49,25 @@ struct PromptEditorView: View {
                         .font(.title2)
                         .fontWeight(.bold)
                         .textFieldStyle(PlainTextFieldStyle())
+                        .padding(.horizontal, 8)
+                        .padding(.vertical, 4)
+                        .background(
+                            RoundedRectangle(cornerRadius: 6)
+                                .fill(Color(.controlBackgroundColor))
+                                .stroke(Color.accentColor.opacity(0.3), lineWidth: 1)
+                        )
+                        .transition(.asymmetric(
+                            insertion: .scale.combined(with: .opacity),
+                            removal: .scale.combined(with: .opacity)
+                        ))
                 } else {
                     Text(prompt.title)
                         .font(.title2)
                         .fontWeight(.bold)
+                        .transition(.asymmetric(
+                            insertion: .scale.combined(with: .opacity),
+                            removal: .scale.combined(with: .opacity)
+                        ))
                 }
                 
                 Spacer()
@@ -86,6 +101,10 @@ struct PromptEditorView: View {
                             addTag()
                         }
                         .disabled(tagInputText.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty)
+                        .buttonStyle(.borderedProminent)
+                        .controlSize(.small)
+                        .scaleEffect(tagInputText.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty ? 0.95 : 1.0)
+                        .animation(.spring(response: 0.3, dampingFraction: 0.8), value: tagInputText.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty)
                         
                         Spacer() // 确保左对齐
                     }
@@ -97,16 +116,20 @@ struct PromptEditorView: View {
                                 tags: editingTags,
                                 isEditing: true,
                                 onTagsChanged: { updatedTags in
-                                    editingTags = updatedTags
+                                    withAnimation(.spring(response: 0.4, dampingFraction: 0.8)) {
+                                        editingTags = updatedTags
+                                    }
                                 }
                             )
                         }
                         .frame(maxWidth: .infinity, alignment: .leading)
+                        .transition(.move(edge: .top).combined(with: .opacity))
                     }
                 }
                 .padding(.horizontal)
                 .padding(.top, 8)
                 .padding(.bottom, 8)
+                .transition(.move(edge: .top).combined(with: .opacity))
             } else if !prompt.tags.isEmpty {
                 VStack(alignment: .leading, spacing: 8) {
                     HStack(alignment: .center) {
@@ -122,6 +145,7 @@ struct PromptEditorView: View {
                 }
                 .padding(.horizontal)
                 .padding(.top, 8)
+                .transition(.move(edge: .top).combined(with: .opacity))
             }
             
             // 内容编辑/预览区域
