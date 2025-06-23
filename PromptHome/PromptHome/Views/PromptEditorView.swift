@@ -7,6 +7,7 @@
 
 import SwiftUI
 import SwiftData
+import Down
 
 struct PromptEditorView: View {
     let prompt: Prompt
@@ -165,6 +166,7 @@ struct PromptEditorView: View {
                     .background(Color(.textBackgroundColor))
                 } else {
                     OptimizedTextView(content: prompt.content)
+                        .id(prompt.id) // 强制重新渲染当选中不同提示词时
                         .frame(maxWidth: .infinity, maxHeight: .infinity)
                         .background(Color(.textBackgroundColor))
                 }

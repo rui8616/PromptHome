@@ -326,6 +326,17 @@ struct ContentView: View {
                                 proxy.scrollTo(newPromptID, anchor: .center)
                             }
                         }
+                        // 重置编辑状态
+                        isEditing = false
+                        if let prompt = newValue {
+                            editingTitle = prompt.title
+                            editingTags = prompt.tags
+                            editingContent = prompt.content
+                        } else {
+                            editingTitle = ""
+                            editingTags = []
+                            editingContent = ""
+                        }
                     }
                     .refreshable {
                         paginationManager.refresh()
