@@ -18,9 +18,24 @@ struct PromptHomeApp: App {
             Prompt.self,
             AIModelConfig.self,
         ])
-        let modelConfiguration = ModelConfiguration(schema: schema, isStoredInMemoryOnly: false)
-
+        
+        // 配置 Application Support 目录
+        let fileManager = FileManager.default
+        guard let appSupportURL = fileManager.urls(for: .applicationSupportDirectory, in: .userDomainMask).first else {
+            fatalError("Could not find Application Support directory")
+        }
+        
+        // 创建应用专属目录
+        let directoryURL = appSupportURL.appendingPathComponent("PromptHome")
+        let fileURL = directoryURL.appendingPathComponent("PromptHome.store")
+        
         do {
+            // 确保目录存在
+            try fileManager.createDirectory(at: directoryURL, withIntermediateDirectories: true, attributes: nil)
+            
+            // 创建自定义配置，指定存储位置
+            let modelConfiguration = ModelConfiguration(url: fileURL)
+            
             return try ModelContainer(for: schema, configurations: [modelConfiguration])
         } catch {
             fatalError("Could not create ModelContainer: \(error)")

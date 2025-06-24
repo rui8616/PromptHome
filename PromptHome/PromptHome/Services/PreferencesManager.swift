@@ -28,7 +28,7 @@ class PreferencesManager {
     
     // 更新自启动设置
     private func updateAutoLaunchSetting(enabled: Bool) {
-        let bundleIdentifier = Bundle.main.bundleIdentifier ?? "com.prompthome.app"
+        //let bundleIdentifier = Bundle.main.bundleIdentifier ?? "com.prompthome.app"
         
         do {
             if enabled {

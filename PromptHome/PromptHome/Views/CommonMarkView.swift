@@ -51,14 +51,15 @@ struct CommonMarkView: View {
         Task.detached {
             do {
                 // 预处理内容以保留空行
-                let processedContent = self.preprocessMarkdownForBlankLines(content)
+                let processedContent = await self.preprocessMarkdownForBlankLines(content)
                 let down = Down(markdownString: processedContent)
                 // 配置Down选项以保留换行符和空行
-                var options: DownOptions = [.hardBreaks, .validateUTF8]
+                let options: DownOptions = [.hardBreaks, .validateUTF8]
                 let nsAttributedString = try down.toAttributedString(options)
+                let attributedStringCopy = AttributedString(nsAttributedString)
                 
                 await MainActor.run {
-                    self.attributedString = AttributedString(nsAttributedString)
+                    self.attributedString = attributedStringCopy
                     self.isLoading = false
                 }
             } catch {
