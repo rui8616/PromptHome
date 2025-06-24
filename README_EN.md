@@ -78,8 +78,9 @@ PromptHome/
 - [X] Enhanced Markdown rendering (bold, italic, code blocks, etc.)
 - [X] Import/export functionality
 - [ ] Keyboard shortcuts support
-- [ ] Add persistent status bar icon display
-- [ ] Add auto-launch with macOS option
+- [X] Add persistent status bar icon display
+- [X] Add auto-launch with macOS option
+- [X] Add DB persistence support
 
 ### Medium Priority
 - [X] Theme switching (light/dark mode)
